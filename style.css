@@ -74,3 +74,25 @@ body {
   stroke-dashoffset: 34;
 }
 /* Both states */
+.btn--running,
+.btn--done {
+	outline: none;
+	pointer-events: none;
+	width: 3em;
+	user-select: none;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+}
+.btn--running .btn__text,
+.btn--done .btn__text {
+	color: transparent;
+	transition:
+		background-color 0.3s ease-in-out,
+		visibility 0.3s steps(1);
+}
+.btn--running .btn__progress,
+.btn--done .btn__progress {
+	visibility: visible;
+}
+
+/* Runnig state */
