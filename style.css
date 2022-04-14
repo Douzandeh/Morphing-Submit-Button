@@ -76,23 +76,58 @@ body {
 /* Both states */
 .btn--running,
 .btn--done {
-	outline: none;
-	pointer-events: none;
-	width: 3em;
-	user-select: none;
-	-moz-user-select: none;
-	-webkit-user-select: none;
+  outline: none;
+  pointer-events: none;
+  width: 3em;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
 }
 .btn--running .btn__text,
 .btn--done .btn__text {
-	color: transparent;
-	transition:
-		background-color 0.3s ease-in-out,
-		visibility 0.3s steps(1);
+  color: transparent;
+  transition: background-color 0.3s ease-in-out, visibility 0.3s steps(1);
 }
 .btn--running .btn__progress,
 .btn--done .btn__progress {
-	visibility: visible;
+  visibility: visible;
 }
 
 /* Runnig state */
+
+.btn--running .btn__text {
+  background-color: var(--bg2);
+  visibility: hidden;
+}
+.btn--running .btn__progress {
+  transition: visibility 0.3s 0.3s steps(1, start);
+}
+.btn--running .btn__progress-track {
+  r: 20px;
+  stroke-width: 8;
+  transition: r 0.3s 0.3s ease-in-out, stroke-width 0.3s 0.3s ease-in-out;
+}
+.btn--running .btn__progress-fill {
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 2s 0.6s linear;
+}
+
+/* Done state */
+.btn--done .btn__progress-track {
+  stroke: var(--primary1);
+  transition: r 0.3s ease-in-out, stroke-width 0.3s ease-in-out;
+}
+.btn--done .btn__progress-check {
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 0.3s 0.3s ease-out;
+}
+
+/* Dark theme */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg1: hsl(var(--hue), 10%, 10%);
+    --bg2: hsl(var(--hue), 10%, 20%);
+    --fg1: hsl(var(--hue), 10%, 90%);
+    --fg2: hsl(var(--hue), 10%, 80%);
+  }
+}
